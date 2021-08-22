@@ -1,0 +1,17 @@
+ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 0 2rem;
+    flex-wrap: wrap;
+    li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        h4 {
+            font-weight: 400;
+            color: rgba($color: #0a9bd4, $alpha: 1.0);
+        }
+    }
+}

@@ -1,0 +1,51 @@
+.no-webp.footer {
+    background-image: url(../img/contacto.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: var(--claro);
+    padding: 2rem 0;
+    margin-top: 2rem;
+    margin-bottom: 0;
+}
+
+.webp .footer {
+    background-image: url(../img/contacto.webp);
+}
+
+.contenedor {
+    align-items: center;
+    text-align: center;
+    color: $blanco;
+    .widget>* {
+        color: $blanco;
+        margin: 0;
+    }
+}
+
+@media (min-width: 768px) {
+    .footer .contenedor {
+        display: grid;
+        grid-template-columns: repeat(2, 30%) auto;
+    }
+}
+
+.copyrigth {
+    margin: 0;
+    text-align: center;
+    color: white;
+    background-color: #2c2727;
+}
+
+.widget {
+    nav {
+        display: flex;
+        flex-direction: column;
+        a {
+            color: $blanco;
+            font-size: 2rem;
+            &:hover {
+                color: $azul;
+            }
+        }
+    }
+}

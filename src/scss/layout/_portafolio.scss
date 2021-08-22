@@ -1,0 +1,32 @@
+.portafolio {
+    h2 {
+        color: $negro;
+    }
+}
+
+
+/*Portafolio*/
+
+.elemento {
+    border-bottom: 1px solid var(--oscuro);
+    margin-bottom: 3rem;
+    .contenido {
+        color: $negro;
+    }
+}
+
+.elemento:last-of-type {
+    border: none;
+}
+
+@media(min-width:768px) {
+    .listado {
+        display: grid;
+        grid-template-columns: repeat( 3, 1fr);
+        grid-column-gap: 2rem;
+        grid-auto-rows: max-content;
+    }
+    .elemento :nth-child(3) {
+        grid-row-end: span 2;
+    }
+}

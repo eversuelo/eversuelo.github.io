@@ -1,0 +1,93 @@
+.barra {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $grisOscuro;
+    justify-content: space-around;
+    padding: 0 0;
+    @include tablet {
+        flex-direction: row;
+    }
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    @include tablet {
+        width: auto;
+    }
+    h2 {
+        font-size: 3rem;
+        font-weight: $bold;
+        color: $blanco;
+        margin: 0 0;
+        h2 &:hover {
+            color: $azul;
+        }
+    }
+    @include tablet {
+        width: auto;
+        h2 {
+            white-space: nowrap;
+            margin-left: 2rem;
+        }
+    }
+}
+
+a {
+    transition: all 0.3s ease-in-out;
+}
+
+.navegacion {
+    visibility: hidden;
+    opacity: 0;
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    transition: visibility .3s ease-in-out, opacity .5s linear, display 3s linear;
+    a {
+        color: $blanco;
+        text-align: center;
+        justify-content: space-around;
+        padding: 2rem;
+        width: 100%;
+        &:hover {
+            color: $azul;
+            background-color: $blanco;
+        }
+    }
+    @include tablet {
+        display: flex;
+        flex-direction: row;
+        opacity: 1;
+        visibility: visible;
+        height: auto;
+        padding: 0;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        a {
+            width: auto;
+        }
+    }
+}
+
+.mobile-menu {
+    img {
+        width: 3rem;
+    }
+    &:hover {
+        cursor: pointer;
+    }
+    @include tablet {
+        display: none;
+    }
+}
+
+.mostrar {
+    visibility: visible;
+    opacity: 1;
+    display: flex;
+}
