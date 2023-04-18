@@ -1,0 +1,154 @@
+@use "../base/mixins" as m;
+@use "../base/variables" as v;
+
+.navbar {
+    &--overlay {
+        background-color: rgba(v.$azul,0.9);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        border-radius: 1rem;
+        @include m.telefono {   
+         
+        }
+    }
+}
+.dropdown-menu{
+    background-color: rgba(v.$azul,1);
+    .dropdown-item{
+        background-color: transparent;
+    }
+}
+.nav-link{
+    &:hover
+    {
+        color: v.$golden;
+        transform: scale(1.05);
+    }
+
+}
+
+[class*="navbar"] {
+    z-index: 5;
+}
+.logo-brand-navbar {
+    height: auto;
+    width: 100% !important;
+    z-index: 0 !important;
+    object-fit: contain !important;
+    filter: brightness(1) !important;
+    padding: 0rem !important;
+}
+.navbar-overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    background: rgba(0, 255, 255, 1);
+    box-shadow: 0 0.75rem 2rem 0 rgba(0, 0, 0, 0.1);
+    border-radius: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+.navbar-overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    background: transparent;
+    box-shadow: 0 0.75rem 2rem 0 rgba(0, 0, 0, 0.1);
+    border-radius: 2rem;
+    z-index: 1;
+    padding: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+    position: relative;
+}
+
+#navbarNav {
+    transition: all 0.4s ease-in-out;
+}
+
+#navbarNav ul li a {
+    transition: all 0.3s ease-in-out;
+    color: white;
+}
+
+#navbarNav ul li a:hover {
+    color: var(--bs-golden);
+    transform: scale(1.2);
+}
+
+.navbar-overlay::before {
+    display: block;
+    content: "";
+    height: -moz-available;
+    height: -webkit-fill-available;
+    height: fill-available;
+    height: 100%;
+    width: 100%;
+    width: -moz-available;
+    /* webkit-based browsers will ignore this. */
+    width: -webkit-fill-available;
+    /* Mozilla-based browsers will ignore this. */
+    width: fill-available;
+    position: absolute;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    text-align: center;
+    box-shadow: 0 0.75rem 2rem 0 rgba(0, 0, 0, 0.1);
+    border-radius: 2rem;
+    position: absolute;
+    background: rgba(0, 255, 255, 0.75);
+    z-index: 1;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+@media (min-width:768px) {
+    .navbar-overlay::before {
+        background: transparent;
+        border: none;
+
+        box-shadow: none;
+    }
+
+    .navbar-overlay {
+        background: transparent;
+        border: none;
+        box-shadow: none;
+    }
+}
+
+.navbar-overlay ul li a {
+    display: block;
+    color: var(--bs-golden);
+
+    transition: all 0.35s ease-in-out;
+}
+
+.navbar-overlay ul li a:hover {
+    transform: scale(1.2);
+}
+
+.navbar-brand {
+    width: 25%;
+
+    @include m.tablet {
+        width: 20%;
+    }
+
+    @include m.desktop {
+        width: 18%;
+    }
+
+    @include m.desktopXL {
+        width: 16%;
+    }
+
+    @include m.desktopXXL {
+        width: 15%;
+    }
+}

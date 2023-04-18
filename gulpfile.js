@@ -1,54 +1,82 @@
-const { src, dest, watch, series, parallel } = require('gulp');
+const { src, dest, watch, parallel } = require('gulp');
+
+// CSS
 const sass = require('gulp-sass')(require('sass'));
-const postcss = require('gulp-postcss');
+const plumber = require('gulp-plumber');
 const autoprefixer = require('autoprefixer');
-//Imagenes
+const cssnano = require('cssnano');
+const postcss = require('gulp-postcss');
+const sourcemaps = require('gulp-sourcemaps');
+
+// Imagenes
+const cache = require('gulp-cache');
 const imagemin = require('gulp-imagemin');
 const webp = require('gulp-webp');
 const avif = require('gulp-avif');
 
-function css(done) {
-    //compilar sass
-    //1. Identificar aRCHIVO
-    //2. Compilarla
-    //3. Guardar el CSS
-    src('src/scss/app.scss')
-        .pipe(sass()).pipe(postcss([autoprefixer()]))
-        .pipe(dest('build/css'));
+// Javascript
+const terser = require('gulp-terser-js');
+
+function css( done ) {
+    src('src/scss/**/*.scss') // Identificar el archivo .SCSS a compilar
+        .pipe(sourcemaps.init())
+        .pipe( plumber())
+        .pipe( sass() ) // Compilarlo
+        .pipe( postcss([ autoprefixer(), cssnano() ]) )
+        .pipe(sourcemaps.write('.'))
+        .pipe( dest('build/css') ) // Almacenarla en el disco duro
     done();
 }
 
 function imagenes(done) {
-    src('src/img/**/*').pipe(imagemin({ optimizationLevel: 3 })).pipe(dest('build/img'));
+    const opciones = {
+        optimizationLevel: 3
+    }
+    src('src/img/**/*.{png,jpg}')
+        .pipe( cache( imagemin(opciones) ) )
+        .pipe( dest('build/img') )
     done();
 }
 
-function versionWebp(done) {
+function versionWebp( done ) {
     const opciones = {
         quality: 50
-    }
-    src('src/img/**/*.{png,jpg}').pipe(webp(opciones)).pipe(dest('build/img'));
+    };
+    src('src/img/**/*.{png,jpg}')
+        .pipe( webp(opciones) )
+        .pipe( dest('build/img') )
     done();
 }
 
-function versionAvif(done) {
+function versionAvif( done ) {
     const opciones = {
         quality: 50
-    }
-    src('src/img/**/*.{png,jpg}').pipe(avif(opciones)).pipe(dest('build/img'));
+    };
+    src('src/img/**/*.{png,jpg}')
+        .pipe( avif(opciones) )
+        .pipe( dest('build/img') )
     done();
 }
 
-function dev() {
+function javascript( done ) {
+    src(['src/js/**/*.js','node_modules/bootstrap/dist/js/bootstrap.bundle.js','node_modules/typed.js/dist/typed.cjs'])
+        .pipe(sourcemaps.init())
+        .pipe( terser() )
+        .pipe(sourcemaps.write('.'))
+        .pipe(dest('build/js'));
+
+    done();
+}
+
+function dev( done ) {
     watch('src/scss/**/*.scss', css);
-    watch('src/img/**/*', imagenes);
-    watch('src/img/**/*', versionWebp);
+    watch('src/js/**/*.js', javascript);
+    done();
 }
+
 exports.css = css;
-exports.dev = dev;
+exports.js = javascript;
 exports.imagenes = imagenes;
 exports.versionWebp = versionWebp;
 exports.versionAvif = versionAvif;
-exports.default = series(imagenes, versionWebp, versionAvif, css, dev);
-// series- Se inicia uba tarea y hasta que finaliza, inicia la siguiente
-// parallel- Todas se inician al mismo tiempo
+exports.dev = parallel( imagenes, versionWebp, versionAvif, javascript, dev) ;

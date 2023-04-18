@@ -1,0 +1,26 @@
+.warp__header {
+    overflow: hidden;
+    position: relative;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    canvas {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 100%;
+    }
+    .warp__overlay {
+        z-index: 1;
+        height: 75%;
+        width: 100%;
+        img{
+            width: 100%;
+            height: auto;
+        }
+    }
+}

@@ -1,0 +1,42 @@
+@use '../base/mixins' as m;
+
+.galeria {
+    @include m.grid(2, 0rem);
+
+    @include m.desktop {
+        @include m.grid(3, 0rem);
+    }
+
+
+    height: -webkit-fill-available;
+    height: -moz-avalible;
+    height: 100%;
+
+    max-height:100%;
+
+    .imagen {
+        max-height: 45rem;
+
+        img,
+        picture {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+            display: block;
+        }
+
+
+    }
+}
+
+.some-text {
+    display: none;
+    border: 1px solid #000;
+    height: 30px;
+    width: 290px;
+    margin-left: 10px;
+}
+
+.imagen:hover+.some-text {
+    display: block;
+}

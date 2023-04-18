@@ -1,0 +1,32 @@
+@use "./../../base/variables" as v;
+.cherry_blossom_petals_falling {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: v.$negro;
+    position: relative;
+    align-items: center;
+    .cherry_blossom_petals_falling__overlay {
+        position: absolute;
+        height: 100%;
+        top: 0;
+        right: 0%;
+        //transform: translate(50%,-10%);
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        align-items: center;
+        &::before {
+            position: absolute;
+            background: linear-gradient(to right,#15154458 ,#15154458);
+            content: '';
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: 100%;
+            filter: blur(5px);
+        }
+    }
+}
