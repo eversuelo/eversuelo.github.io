@@ -1,0 +1,16 @@
+@use 'variables' as var;
+.text-center {
+    text-align: center;
+}
+.bg-white{
+    background-color: var.$blanco!important;
+}
+.bg-primario {
+    background-color: var.$primario;
+}
+.margin-negativo-10{
+    margin-top: -10rem!important;
+}
+.padding-bottom-0{
+    padding-bottom: 0!important;
+}
