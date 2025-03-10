@@ -8,7 +8,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout código
         uses: actions/checkout@v3
@@ -22,6 +21,9 @@ jobs:
         run: |
           sed -i 's/API_KEY_PLACEHOLDER/${{ secrets.TOKEN }}/g' index.html
 
+      - name: Mostrar contenido de index.html (depuración)
+        run: |
+          head -n 10 index.html
 
       - name: Deploy a GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
