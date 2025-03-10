@@ -132,8 +132,7 @@
     }
     fetch('https://devever.com.mx/api/repositories/eversuelo', {
       mode: 'cors', // Explicitly set CORS mode
-      headers: GITHUB_TOKEN ? { 'Authorization': `token ${GITHUB_TOKEN}` } : {}
-    })
+  })
       .then(response => {
         if (!response.ok) {
           return response.json().then(err => {
