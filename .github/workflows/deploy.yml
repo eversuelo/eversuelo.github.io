@@ -1,10 +1,33 @@
+name: CI & Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Run one-line script
+        run: echo "Hello, world!"
+
+      - name: Run multi-line script
+        run: |
+          echo "Agrega otras acciones para build, test y deploy de tu proyecto."
+          # Aquí podrías ejecutar tus tests, build, etc.
+
   deploy:
     needs: build
     runs-on: ubuntu-latest
     environment:
       name: GitHubPages
-    if: github.event_name == 'push'  # Ejecuta deploy solo en push (no en pull requests)
+    if: github.event_name == 'push'
     steps:
       - name: Checkout código
         uses: actions/checkout@v3
@@ -17,10 +40,10 @@ jobs:
       - name: Verificar que TOKEN esté configurado
         run: |
           if [ -z "${{ secrets.TOKEN }}" ]; then
-            echo "El secreto TOKEN está vacío";
-            exit 1;
+            echo "El secreto TOKEN está vacío"
+            exit 1
           else
-            echo "El secreto TOKEN está configurado.";
+            echo "El secreto TOKEN está configurado."
           fi
 
       - name: Reemplazar el placeholder en index.html
