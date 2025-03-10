@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,11 +8,8 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Typed.js para efecto tipiado -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.0/typed.min.js" crossorigin="anonymous"></script>
-
 </head>
-
 <body class="bg-gray-100 text-gray-800">
-
   <!-- Navbar -->
   <nav class="bg-white shadow fixed w-full z-20">
     <div class="max-w-7xl mx-auto px-4">
@@ -22,6 +18,7 @@
         <div class="hidden md:flex space-x-6">
           <a href="#inicio" class="hover:text-blue-600">Inicio</a>
           <a href="#acerca" class="hover:text-blue-600">Acerca de mí</a>
+          <a href="#cv" class="hover:text-blue-600">CV</a>
           <a href="#repositorios" class="hover:text-blue-600">Repositorios</a>
           <a href="#contacto" class="hover:text-blue-600">Contacto</a>
         </div>
@@ -40,6 +37,7 @@
       <div class="px-4 pt-2 pb-4 space-y-1">
         <a href="#inicio" class="block hover:text-blue-600">Inicio</a>
         <a href="#acerca" class="block hover:text-blue-600">Acerca de mí</a>
+        <a href="#cv" class="block hover:text-blue-600">CV</a>
         <a href="#repositorios" class="block hover:text-blue-600">Repositorios</a>
         <a href="#contacto" class="block hover:text-blue-600">Contacto</a>
       </div>
@@ -82,35 +80,110 @@
   <section id="acerca" class="max-w-5xl mx-auto p-6">
     <div class="grid md:grid-cols-2 gap-6 items-center">
       <div class="flex justify-center">
-        <!-- Puedes cambiar la ruta a tu foto de perfil -->
         <img src="https://media.licdn.com/dms/image/v2/D4E03AQEWXutQUxCPEw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1731016127027?e=1747267200&v=beta&t=5GzPUi6x1hyB_xkwy_eASRCsSyvKg2odjY-AFLDvfNY" alt="Foto de perfil"
           class="w-64 h-64 rounded-full object-cover">
       </div>
       <div>
         <h2 class="text-3xl font-bold mb-4">Acerca de mí</h2>
         <p class="mb-4">
-          Soy Everardo Torres, un apasionado desarrollador con experiencia en tecnologías web, aplicaciones móviles y
-          proyectos de innovación.
-          Me especializo en crear soluciones eficientes y escalables, siempre en búsqueda de nuevos desafíos que me
-          permitan crecer profesionalmente.
+          Soy Everardo Torres, un apasionado desarrollador con experiencia en tecnologías web, aplicaciones móviles y proyectos de innovación. Me motiva aprender constantemente, enfrentar desafíos y crecer profesionalmente a través de la mentoría y el aprendizaje práctico.
         </p>
         <p class="mb-4">
-          Con una sólida formación en ingeniería y un enfoque práctico en el desarrollo de software, he participado en
-          proyectos que abarcan desde sistemas complejos hasta aplicaciones de alto rendimiento.
-          Mi meta es aportar valor a cada equipo y proyecto, combinando creatividad, análisis y tecnología.
+          Con una sólida formación en ingeniería y experiencia en diversos lenguajes y frameworks, mi meta es aportar valor y creatividad en cada proyecto.
         </p>
-        <h3 class="text-2xl font-semibold mb-2">Habilidades Técnicas</h3>
-        <ul class="list-disc list-inside">
-          <li>JavaScript, TypeScript, Node.js</li>
-          <li>React, Angular, Vue.js</li>
-          <li>Python, Django, Flask</li>
-          <li>C++, C, Java</li>
-          <li>Desarrollo móvil con Flutter y Kotlin</li>
-          <li>SQL y NoSQL</li>
-        </ul>
       </div>
     </div>
   </section>
+
+  <!-- Sección CV -->
+ <!-- Sección CV con diseño de dos columnas -->
+<section id="cv" class="max-w-7xl mx-auto p-6 bg-white shadow my-6 rounded">
+  <h2 class="text-3xl font-bold mb-6 text-center">Curriculum Vitae</h2>
+  <div class="grid md:grid-cols-2 gap-6">
+    <!-- Columna Izquierda: Datos personales y habilidades -->
+    <div class="space-y-6">
+      <!-- Datos Personales -->
+      <div class="p-4 bg-gray-50 rounded">
+        <h3 class="text-2xl font-semibold mb-4">Datos Personales</h3>
+        <p class="mb-2"><strong>Nombre:</strong> José Everardo Torres Orozco</p>
+        <p class="mb-2"><strong>Ubicación:</strong> Guadalajara, Jalisco, México</p>
+        <p class="mb-2"><strong>Teléfono:</strong> +52 44 34 20 24 70</p>
+        <p class="mb-2"><strong>Email:</strong> everardo.03.04.99@gmail.com</p>
+        <p class="mb-2"><strong>Web:</strong> <a href="http://www.devever.com.mx" target="_blank" class="text-blue-600 hover:underline">www.devever.com.mx</a></p>
+      </div>
+      <!-- Habilidades Técnicas -->
+      <div class="p-4 bg-gray-50 rounded">
+        <h3 class="text-2xl font-semibold mb-4">Habilidades Técnicas</h3>
+        <ul class="list-disc list-inside text-sm space-y-1">
+          <li>PHP (Laravel, Wordpress)</li>
+          <li>JavaScript (NodeJS, VueJS, ReactJS, TypeScript, React Native, NextJS, ExpressJS)</li>
+          <li>Java (Java Swing, OOP)</li>
+          <li>C/C++, Python</li>
+          <li>SQL (Básico), HTML, CSS3</li>
+          <li>Herramientas: Terraform, Vagrant, Office Automation, Flow Automation, N8N</li>
+          <li>Sistemas Operativos: Windows, Linux (Ubuntu), Microsoft Office</li>
+          <li>Cloud: Conocimientos en Azure</li>
+          <li>Otros: Gráficos por Computadora, Ray Tracing, Redes (CISCO CCNA - Básico), NoSQL, Algoritmos y Estructuras de Datos</li>
+        </ul>
+      </div>
+      <!-- Habilidades Blandas -->
+      <div class="p-4 bg-gray-50 rounded">
+        <h3 class="text-2xl font-semibold mb-4">Habilidades Blandas</h3>
+        <ul class="list-disc list-inside text-sm space-y-1">
+          <li>Honestidad y Empatía</li>
+          <li>Autodidacta y Creatividad</li>
+          <li>Adaptabilidad y Colaboración</li>
+          <li>Proactividad y Pensamiento Crítico</li>
+        </ul>
+      </div>
+    </div>
+    <!-- Columna Derecha: Experiencia y Educación -->
+    <div class="space-y-6">
+      <!-- Experiencia Laboral -->
+      <div class="p-4 bg-gray-50 rounded">
+        <h3 class="text-2xl font-semibold mb-4">Experiencia Laboral</h3>
+        <div class="mb-4 border-b pb-2">
+          <h4 class="text-xl font-bold">FlexBPO - Web Developer</h4>
+          <p class="text-gray-600 text-sm">Abril 2024 - Actual</p>
+          <p class="mt-2">Desarrollo de nuevas funciones para software aduanal utilizando React, MongoDB y NodeJS.</p>
+        </div>
+        <div class="mb-4 border-b pb-2">
+          <h4 class="text-xl font-bold">Intern at Best Reference - Web Developer</h4>
+          <p class="text-gray-600 text-sm">Abril 2023 - Febrero 2024</p>
+          <p class="mt-2">Desarrollo de software de ventas usando PHP, VueJS y MySQL.</p>
+        </div>
+        <div>
+          <h4 class="text-xl font-bold">Freelance</h4>
+          <p class="mt-2">
+            Desarrollo web independiente para proyectos como 
+            <a href="https://www.sonidoemotions.com" target="_blank" class="text-blue-600 hover:underline">Sonido Emotions</a>, 
+            Taller Mecánico Myrac (vencido) y 
+            <a href="https://www.metamorfosisambiental.com.mx" target="_blank" class="text-blue-600 hover:underline">Metamorfosis Ambiental</a>.
+          </p>
+        </div>
+      </div>
+      <!-- Educación -->
+      <div class="p-4 bg-gray-50 rounded">
+        <h3 class="text-2xl font-semibold mb-4">Educación</h3>
+        <div class="mb-4 border-b pb-2">
+          <h4 class="text-xl font-bold">Universidad Michoacana de San Nicolás de Hidalgo</h4>
+          <p class="text-gray-600 text-sm">2017 - Actual</p>
+          <p class="mt-2">Facultad de Ingeniería Eléctrica - Ingeniería en Computación (10º Semestre, en curso)</p>
+        </div>
+        <div class="mb-4 border-b pb-2">
+          <h4 class="text-xl font-bold">Colegio Primitivo y Nacional de San Nicolás de Hidalgo</h4>
+          <p class="text-gray-600 text-sm">2014 - 2017</p>
+          <p class="mt-2">Educación Media Superior</p>
+        </div>
+        <div>
+          <h4 class="text-xl font-bold">Departamento de Idiomas</h4>
+          <p class="text-gray-600 text-sm">2017 - 2020</p>
+          <p class="mt-2">Inglés - Nivel B2</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
   <!-- Repositorios Destacados -->
   <section id="repositorios" class="max-w-7xl mx-auto p-6">
@@ -118,95 +191,97 @@
     <div id="reposContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       <!-- Las tarjetas se cargarán dinámicamente -->
     </div>
-  </section>
-  <script>
-    const reposContainer = document.getElementById('reposContainer');
-
-    // Función para formatear la fecha en español
-    function formatDate(dateStr) {
-      const date = new Date(dateStr);
-      return date.toLocaleDateString('es-ES');
+    <script>
+     fetch('https://devever.com.mx/api/repositories/eversuelo', { mode: 'cors' })
+  .then(response => {
+    if (!response.ok) {
+      return response.json().then(err => { throw new Error(`Error ${response.status}: ${err.message}`); });
     }
+    return response.json();
+  })
+  .then(repos => {
+    if (!Array.isArray(repos)) throw new Error('La respuesta de la API no es válida.');
+    
+    // Ordenar y renderizar repositorios
+    repos.sort((a, b) => {
+      if (b.stargazers_count !== a.stargazers_count) return b.stargazers_count - a.stargazers_count;
+      if (b.forks_count !== a.forks_count) return b.forks_count - a.forks_count;
+      return new Date(b.updated_at) - new Date(a.updated_at);
+    });
 
-    fetch('https://devever.com.mx/api/repositories/eversuelo', {
-      mode: 'cors' // Explicitly set CORS mode
-    })
-      .then(response => {
-        if (!response.ok) {
-          return response.json().then(err => {
-            throw new Error(`Error ${response.status}: ${err.message}`);
-          });
-        }
-        return response.json();
-      })
-      .then(repos => {
-        if (!Array.isArray(repos)) {
-          throw new Error('La respuesta de la API no es válida.');
-        }
-        
-        // Ordenar repositorios por estrellas, luego por forks y finalmente por fecha de actualización
-        repos.sort((a, b) => {
-          if (b.stargazers_count !== a.stargazers_count) {
-            return b.stargazers_count - a.stargazers_count;
-          }
-          if (b.forks_count !== a.forks_count) {
-            return b.forks_count - a.forks_count;
-          }
-          return new Date(b.updated_at) - new Date(a.updated_at);
-        });
+    repos.forEach(repo => {
+      const card = document.createElement('div');
+      // Asignar el id para identificar la tarjeta
+      card.id = repo.name;
+      card.className = 'bg-white p-6 rounded shadow hover:shadow-lg transition';
 
-        repos.forEach(repo => {
-          const card = document.createElement('div');
-          card.className = 'bg-white p-6 rounded shadow hover:shadow-lg transition';
+      const title = document.createElement('a');
+      title.href = repo.html_url;
+      title.target = '_blank';
+      title.textContent = repo.name;
+      title.className = 'block text-2xl font-bold text-blue-600 hover:underline';
+      card.appendChild(title);
 
-          const title = document.createElement('a');
-          title.href = repo.html_url;
-          title.target = '_blank';
-          title.textContent = repo.name;
-          title.className = 'block text-2xl font-bold text-blue-600 hover:underline';
-          card.appendChild(title);
+      const desc = document.createElement('p');
+      desc.className = 'mt-2 text-gray-600';
+      desc.innerHTML = repo.description || 'Sin descripción disponible.';
+      card.appendChild(desc);
 
-          const desc = document.createElement('p');
-          desc.className = 'mt-2 text-gray-600';
-          desc.innerHTML = repo.description || 'Sin descripción disponible.';
-          card.appendChild(desc);
+      const info = document.createElement('div');
+      info.className = 'mt-4 flex flex-wrap gap-2 text-sm text-gray-500';
+      if (repo.language) {
+        const lang = document.createElement('span');
+        lang.textContent = `Lenguaje: ${repo.language}`;
+        info.appendChild(lang);
+      }
+      const stars = document.createElement('span');
+      stars.textContent = `★ ${repo.stargazers_count}`;
+      info.appendChild(stars);
+      const forks = document.createElement('span');
+      forks.textContent = `Forks: ${repo.forks_count}`;
+      info.appendChild(forks);
+      const updated = document.createElement('span');
+      // El id se construye concatenando el nombre del repo y "-updated"
+      updated.id = repo.name + '-updated';
+      // Formateamos la fecha de actualización
+      const updateDate = new Date(repo.updated_at).toLocaleDateString('es-ES');
+      updated.textContent = `Actualizado: ${updateDate}`;
+      info.appendChild(updated);
 
-          const info = document.createElement('div');
-          info.className = 'mt-4 flex flex-wrap gap-2 text-sm text-gray-500';
-          if (repo.language) {
-            const lang = document.createElement('span');
-            lang.textContent = `Lenguaje: ${repo.language}`;
-            info.appendChild(lang);
-          }
-          const stars = document.createElement('span');
-          stars.textContent = `★ ${repo.stargazers_count}`;
-          info.appendChild(stars);
-          const forks = document.createElement('span');
-          forks.textContent = `Forks: ${repo.forks_count}`;
-          info.appendChild(forks);
-          const updated = document.createElement('span');
-          updated.textContent = `Actualizado: ${formatDate(repo.updated_at)}`;
-          info.appendChild(updated);
-          card.appendChild(info);
-          reposContainer.appendChild(card);
-        });
-      })
-      .catch(error => {
-        reposContainer.textContent = "Error al cargar repositorios.";
-        console.error(error);
-      });
-  </script>
+      card.appendChild(info);
+      document.getElementById('reposContainer').appendChild(card);
+    });
 
+    // Una vez renderizados todos los repositorios, buscamos el elemento de fecha del repo "eversuelo.github.io"
+    const lastUpdateElement = document.getElementById('eversuelo.github.io-updated');
+    const footerParagraph = document.querySelector('footer p');
+    const currentYear = new Date().getFullYear();
+    if (footerParagraph) {
+      if (lastUpdateElement) {
+        footerParagraph.innerHTML = `&copy; ${currentYear} Todos los derechos reservados. ${lastUpdateElement.textContent}`;
+      } else {
+        footerParagraph.innerHTML = `&copy; ${currentYear} Todos los derechos reservados.`;
+      }
+    }
+  })
+  .catch(error => {
+    document.getElementById('reposContainer').textContent = "Error al cargar repositorios.";
+    console.error(error);
+  });
+
+    </script>
+  </section>
 
   <!-- Contacto -->
   <section id="contacto" class="max-w-7xl mx-auto p-6">
     <h2 class="text-3xl font-bold mb-6 text-center">Contacto</h2>
     <div class="flex flex-col items-center">
       <p class="mb-4">¿Te gustaría trabajar conmigo o conectar profesionalmente? ¡Hablemos!</p>
-      <div class="flex space-x-4">
+      <div class="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4">
         <a href="https://linkedin.com/in/eversuelo" target="_blank" class="text-blue-600 hover:underline">LinkedIn</a>
         <a href="https://github.com/eversuelo" target="_blank" class="text-blue-600 hover:underline">GitHub</a>
-        <a href="mailto:tu-email@dominio.com" class="text-blue-600 hover:underline">Email</a>
+        <a href="mailto:everardo.03.04.99@gmail.com" class="text-blue-600 hover:underline">Email</a>
+        <span class="text-gray-700">Tel: +52 44 34 20 24 70</span>
       </div>
     </div>
   </section>
@@ -226,7 +301,5 @@
       <p class="text-center mt-4">&copy; 2023 Todos los derechos reservados.</p>
     </div>
   </footer>
-
 </body>
-
 </html>
