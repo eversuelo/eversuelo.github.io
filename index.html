@@ -125,7 +125,7 @@
       const date = new Date(dateStr);
       return date.toLocaleDateString('es-ES');
     }
-    fetch('https://api.github.com/users/eversuelo/repos', {
+    fetch('https://devever.com.mx/api/repositories/eversuelo', {
       headers: GITHUB_TOKEN ? { 'Authorization': `token ${GITHUB_TOKEN}` } : {}
     })
       .then(response => {
@@ -177,7 +177,7 @@
           reposContainer.appendChild(card);
   
           // Obtener README para mejorar la descripción
-          fetch(`https://api.github.com/repos/eversuelo/${repo.name}/readme`, {
+          fetch(`https://devever.com.mx/api/repositories/eversuelo/${repo.name}`, {
             headers: GITHUB_TOKEN ? { 'Authorization': `token ${GITHUB_TOKEN}` } : {}
           })
             .then(response => {
