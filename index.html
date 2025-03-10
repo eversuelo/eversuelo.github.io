@@ -2,9 +2,6 @@
 <html lang="es">
 
 <head>
-  <script>
-    const GITHUB_TOKEN = "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";
-  </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Everardo Torres - Desarrollador</title>
@@ -130,9 +127,10 @@
       const date = new Date(dateStr);
       return date.toLocaleDateString('es-ES');
     }
+
     fetch('https://devever.com.mx/api/repositories/eversuelo', {
-      mode: 'cors', // Explicitly set CORS mode
-  })
+      mode: 'cors' // Explicitly set CORS mode
+    })
       .then(response => {
         if (!response.ok) {
           return response.json().then(err => {
@@ -145,7 +143,18 @@
         if (!Array.isArray(repos)) {
           throw new Error('La respuesta de la API no es válida.');
         }
-        repos.sort((a, b) => b.stargazers_count - a.stargazers_count);
+        
+        // Ordenar repositorios por estrellas, luego por forks y finalmente por fecha de actualización
+        repos.sort((a, b) => {
+          if (b.stargazers_count !== a.stargazers_count) {
+            return b.stargazers_count - a.stargazers_count;
+          }
+          if (b.forks_count !== a.forks_count) {
+            return b.forks_count - a.forks_count;
+          }
+          return new Date(b.updated_at) - new Date(a.updated_at);
+        });
+
         repos.forEach(repo => {
           const card = document.createElement('div');
           card.className = 'bg-white p-6 rounded shadow hover:shadow-lg transition';
@@ -180,37 +189,6 @@
           info.appendChild(updated);
           card.appendChild(info);
           reposContainer.appendChild(card);
-
-          // Obtener README para mejorar la descripción
-          fetch(`https://devever.com.mx/api/repositories/eversuelo/${repo.name}`, {
-            headers: GITHUB_TOKEN ? { 'Authorization': `token ${GITHUB_TOKEN}` } : {}
-          })
-            .then(response => {
-              if (!response.ok) throw new Error('No se encontró README');
-              return response.json();
-            })
-            .then(data => {
-              // Decodificar Base64 y eliminar BOM
-              let decoded = decodeURIComponent(escape(atob(data.content).replace(/^\uFEFF/, '')));
-
-              // Extraer la primera línea significativa como descripción
-              const lines = decoded.split('\n').filter(line => line.trim() !== '');
-              let brief = '';
-              if (lines.length > 0) {
-                if (lines[0].startsWith('#')) {
-                  brief = lines.length > 1 ? lines[1].trim() : repo.description || "Sin descripción disponible.";
-                } else {
-                  brief = lines[0].trim();
-                }
-                if (brief.length > 150) {
-                  brief = brief.substring(0, 150) + '...';
-                }
-              }
-              desc.innerHTML = brief;
-            })
-            .catch(() => {
-              desc.innerHTML = repo.description || "Sin descripción disponible.";
-            });
         });
       })
       .catch(error => {
