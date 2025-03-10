@@ -40,7 +40,7 @@ jobs:
           sed -i 's/API_KEY_PLACEHOLDER/${{ secrets.TOKEN }}/g' index.html
 
       - name: Mostrar primeras 10 líneas de index.html (depuración)
-        run: head -n 10 index.html
+        run: head -n 30 index.html
 
       - name: Deploy a GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
