@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <script>
-      const  GITHUB_TOKEN = "API_KEY_PLACEHOLDER";
+      const  GITHUB_TOKEN = "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";
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -125,8 +125,6 @@
       const date = new Date(dateStr);
       return date.toLocaleDateString('es-ES');
     }
-  
-
     fetch('https://api.github.com/users/eversuelo/repos', {
       headers: GITHUB_TOKEN ? { 'Authorization': `token ${GITHUB_TOKEN}` } : {}
     })
