@@ -126,7 +126,8 @@
   
     // Opcional: Token de acceso personal de GitHub (NO LO EXPONGAS EN CLIENTE)
     const token = ''; // Déjalo vacío si no lo usas o maneja desde un servidor
-    const GITHUB_TOKEN = ""; 
+    const GITHUB_TOKEN = "";
+    console.log("GITHUB_TOKEN:", GITHUB_TOKEN);
     fetch('https://api.github.com/users/eversuelo/repos', {
       headers: GITHUB_TOKEN ? { 'Authorization': `token ${GITHUB_TOKEN}` } : {}
     })
