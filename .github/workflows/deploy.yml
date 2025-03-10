@@ -1,0 +1,61 @@
+name: CI & Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Run one-line script
+        run: echo "Hello, world!"
+
+      - name: Run multi-line script
+        run: |
+          echo "Agrega otras acciones para build, test y deploy de tu proyecto."
+          # Aquí podrías ejecutar tus tests, build, etc.
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: GitHubPages
+    if: github.event_name == 'push'
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+
+      - name: Configurar permisos para push
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+
+      - name: Verificar que TOKEN esté configurado
+        run: |
+          if [ -z "${{ secrets.TOKEN }}" ]; then
+            echo "El secreto TOKEN está vacío"
+            exit 1
+          else
+            echo "El secreto TOKEN está configurado."
+          fi
+
+      - name: Reemplazar el placeholder en index.html
+        run: |
+          sed -i 's/API_KEY_PLACEHOLDER/${{ secrets.TOKEN }}/g' index.html
+
+      - name: Mostrar primeras 10 líneas de index.html (depuración)
+        run: head -n 30 index.html
+
+      - name: Deploy a GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./
