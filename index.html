@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <script>
-      const  GITHUB_TOKEN = "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";
+    const GITHUB_TOKEN = "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";
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,6 +14,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.0/typed.min.js" crossorigin="anonymous"></script>
 
 </head>
+
 <body class="bg-gray-100 text-gray-800">
 
   <!-- Navbar -->
@@ -30,8 +32,7 @@
         <div class="md:hidden">
           <button id="menuButton" class="text-gray-800 focus:outline-none">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
           </button>
         </div>
@@ -49,7 +50,7 @@
   </nav>
   <script>
     // Toggle menú móvil
-    document.getElementById('menuButton').addEventListener('click', function() {
+    document.getElementById('menuButton').addEventListener('click', function () {
       document.getElementById('mobileMenu').classList.toggle('hidden');
     });
   </script>
@@ -85,16 +86,20 @@
     <div class="grid md:grid-cols-2 gap-6 items-center">
       <div class="flex justify-center">
         <!-- Puedes cambiar la ruta a tu foto de perfil -->
-        <img src="https://eversuelo.github.io/build/img/profile.jpg" alt="Foto de perfil" class="w-64 h-64 rounded-full object-cover">
+        <img src="https://eversuelo.github.io/build/img/profile.jpg" alt="Foto de perfil"
+          class="w-64 h-64 rounded-full object-cover">
       </div>
       <div>
         <h2 class="text-3xl font-bold mb-4">Acerca de mí</h2>
         <p class="mb-4">
-          Soy Everardo Torres, un apasionado desarrollador con experiencia en tecnologías web, aplicaciones móviles y proyectos de innovación. 
-          Me especializo en crear soluciones eficientes y escalables, siempre en búsqueda de nuevos desafíos que me permitan crecer profesionalmente.
+          Soy Everardo Torres, un apasionado desarrollador con experiencia en tecnologías web, aplicaciones móviles y
+          proyectos de innovación.
+          Me especializo en crear soluciones eficientes y escalables, siempre en búsqueda de nuevos desafíos que me
+          permitan crecer profesionalmente.
         </p>
         <p class="mb-4">
-          Con una sólida formación en ingeniería y un enfoque práctico en el desarrollo de software, he participado en proyectos que abarcan desde sistemas complejos hasta aplicaciones de alto rendimiento. 
+          Con una sólida formación en ingeniería y un enfoque práctico en el desarrollo de software, he participado en
+          proyectos que abarcan desde sistemas complejos hasta aplicaciones de alto rendimiento.
           Mi meta es aportar valor a cada equipo y proyecto, combinando creatividad, análisis y tecnología.
         </p>
         <h3 class="text-2xl font-semibold mb-2">Habilidades Técnicas</h3>
@@ -119,13 +124,14 @@
   </section>
   <script>
     const reposContainer = document.getElementById('reposContainer');
-  
+
     // Función para formatear la fecha en español
     function formatDate(dateStr) {
       const date = new Date(dateStr);
       return date.toLocaleDateString('es-ES');
     }
     fetch('https://devever.com.mx/api/repositories/eversuelo', {
+      mode: 'cors', // Explicitly set CORS mode
       headers: GITHUB_TOKEN ? { 'Authorization': `token ${GITHUB_TOKEN}` } : {}
     })
       .then(response => {
@@ -144,19 +150,19 @@
         repos.forEach(repo => {
           const card = document.createElement('div');
           card.className = 'bg-white p-6 rounded shadow hover:shadow-lg transition';
-  
+
           const title = document.createElement('a');
           title.href = repo.html_url;
           title.target = '_blank';
           title.textContent = repo.name;
           title.className = 'block text-2xl font-bold text-blue-600 hover:underline';
           card.appendChild(title);
-  
+
           const desc = document.createElement('p');
           desc.className = 'mt-2 text-gray-600';
           desc.innerHTML = repo.description || 'Sin descripción disponible.';
           card.appendChild(desc);
-  
+
           const info = document.createElement('div');
           info.className = 'mt-4 flex flex-wrap gap-2 text-sm text-gray-500';
           if (repo.language) {
@@ -175,7 +181,7 @@
           info.appendChild(updated);
           card.appendChild(info);
           reposContainer.appendChild(card);
-  
+
           // Obtener README para mejorar la descripción
           fetch(`https://devever.com.mx/api/repositories/eversuelo/${repo.name}`, {
             headers: GITHUB_TOKEN ? { 'Authorization': `token ${GITHUB_TOKEN}` } : {}
@@ -187,7 +193,7 @@
             .then(data => {
               // Decodificar Base64 y eliminar BOM
               let decoded = decodeURIComponent(escape(atob(data.content).replace(/^\uFEFF/, '')));
-  
+
               // Extraer la primera línea significativa como descripción
               const lines = decoded.split('\n').filter(line => line.trim() !== '');
               let brief = '';
@@ -213,7 +219,7 @@
         console.error(error);
       });
   </script>
-  
+
 
   <!-- Contacto -->
   <section id="contacto" class="max-w-7xl mx-auto p-6">
@@ -243,6 +249,7 @@
       <p class="text-center mt-4">&copy; 2023 Todos los derechos reservados.</p>
     </div>
   </footer>
-  
+
 </body>
+
 </html>
