@@ -1,66 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./build/css/app.css">
-    <script src="build/js/bootstrap.bundle.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.0/typed.js"
-        integrity="sha512-ioFpA4cD4gmoOhHglW4f6gep7w+YL7UMKtXx4ebJ5NN4SscmnZYYmSjkA+DaHGvBI4wpYVPx2C7DmmV9TgbIbQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="build/js/app.js"></script>
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <title>Repositorios de eversuelo</title>
+  <!-- Cargar Tailwind CSS desde CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
+<body class="bg-gray-50">
+  <div class="max-w-3xl mx-auto p-4">
+    <h1 class="text-3xl font-bold text-center my-6">Repositorios de eversuelo</h1>
+    <div id="repoList" class="space-y-4"></div>
+  </div>
 
-<body>
-    <nav id="nav" class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="https://eversuelo.github.io">Everardo Torres</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="repositories.html">Repositorios</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="aboutme.html">Acerca de Mí</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contacto.html">Contacto</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="development.html">Desarrollo Web</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="work.html">Trabajo - Horario</a>
-                    </li
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <script>
-        window.addEventListener('DOMContentLoaded', (event) => {
-            var nav = document.getElementById('nav')
-            //console.log(nav)
-            window.addEventListener('scroll', function () {
-                if (window.pageYOffset > 25) {
-                    nav.classList.add('bg-dark', 'shadow');
+  <script>
+    const repoList = document.getElementById('repoList');
 
-                } else {
-                    nav.classList.remove('bg-dark', 'shadow');
+    // Función para formatear la fecha de actualización
+    function formatDate(dateStr) {
+      const date = new Date(dateStr);
+      return date.toLocaleDateString('es-ES');
+    }
 
-                }
+    // Obtener la lista de repositorios desde la API de GitHub
+    fetch('https://api.github.com/users/eversuelo/repos')
+      .then(response => response.json())
+      .then(repos => {
+        repos.forEach(repo => {
+          // Crear la tarjeta para el repositorio
+          const card = document.createElement('div');
+          card.classList.add('bg-white', 'p-6', 'rounded', 'shadow', 'transition', 'hover:shadow-lg');
+
+          // Título: enlace al repositorio
+          const title = document.createElement('a');
+          title.href = repo.html_url;
+          title.target = '_blank';
+          title.textContent = repo.name;
+          title.classList.add('block', 'text-2xl', 'font-bold', 'text-blue-600', 'hover:underline');
+          card.appendChild(title);
+
+          // Descripción o main-url (se actualizará al obtener el README)
+          const desc = document.createElement('p');
+          desc.classList.add('mt-2', 'text-gray-600');
+          desc.textContent = repo.description || 'Sin descripción disponible.';
+          card.appendChild(desc);
+
+          // Información adicional: lenguaje, estrellas, forks y última actualización
+          const info = document.createElement('div');
+          info.classList.add('mt-4', 'flex', 'flex-wrap', 'gap-4', 'text-sm', 'text-gray-500');
+
+          if (repo.language) {
+            const language = document.createElement('span');
+            language.textContent = `Lenguaje: ${repo.language}`;
+            info.appendChild(language);
+          }
+
+          const stars = document.createElement('span');
+          stars.textContent = `★ ${repo.stargazers_count}`;
+          info.appendChild(stars);
+
+          const forks = document.createElement('span');
+          forks.textContent = `Forks: ${repo.forks_count}`;
+          info.appendChild(forks);
+
+          const updated = document.createElement('span');
+          updated.textContent = `Actualizado: ${formatDate(repo.updated_at)}`;
+          info.appendChild(updated);
+
+          card.appendChild(info);
+          repoList.appendChild(card);
+
+          // Intentar obtener el README para extraer "main-url:" si está presente
+          fetch(`https://api.github.com/repos/eversuelo/${repo.name}/readme`)
+            .then(response => {
+              if (!response.ok) throw new Error('No se encontró README');
+              return response.json();
+            })
+            .then(data => {
+              // Decodificar el contenido (viene en Base64)
+              const decoded = atob(data.content);
+              // Buscar "main-url:" y capturar la URL que le sigue
+              const regex = /main-url:\s*(\S+)/i;
+              const match = decoded.match(regex);
+              if (match && match[1]) {
+                desc.innerHTML = `Main URL: <a href="${match[1]}" target="_blank" class="text-blue-500 underline">${match[1]}</a>`;
+              }
+            })
+            .catch(err => {
+              // Si no se encuentra el README o la etiqueta, se mantiene la descripción por defecto.
             });
-        })
-    </script>
-    <div style="height: 100vh;" class="bg-info d-flex flex-column justify-content-around">
-        <h1>Estamos Trabajando en Esta sección.</h1>
-    </div>
+        });
+      })
+      .catch(error => {
+        console.error('Error al cargar repositorios:', error);
+        repoList.textContent = "Error al cargar repositorios.";
+      });
+  </script>
 </body>
-
 </html>
