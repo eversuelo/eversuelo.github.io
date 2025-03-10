@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Everardo Torres - Desarrollador</title>
+  <!-- Tailwind CSS desde CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Typed.js para efecto tipiado -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.0/typed.min.js"
+    integrity="sha512-ioFpA4cD4gmoOhHglW4f6gep7w+YL7UMKtXx4ebJ5NN4SscmnZYYmSjkA+DaHGvBI4wpYVPx2C7DmmV9TgbIbQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <!-- Navbar -->
+  <nav class="bg-white shadow fixed w-full z-20">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex justify-between items-center py-4">
+        <a href="#" class="text-xl font-bold">Everardo Torres</a>
+        <div class="hidden md:flex space-x-6">
+          <a href="#inicio" class="hover:text-blue-600">Inicio</a>
+          <a href="#acerca" class="hover:text-blue-600">Acerca de mí</a>
+          <a href="#repositorios" class="hover:text-blue-600">Repositorios</a>
+          <a href="#contacto" class="hover:text-blue-600">Contacto</a>
+        </div>
+        <!-- Botón menú móvil -->
+        <div class="md:hidden">
+          <button id="menuButton" class="text-gray-800 focus:outline-none">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Menú móvil -->
+    <div id="mobileMenu" class="hidden md:hidden">
+      <div class="px-4 pt-2 pb-4 space-y-1">
+        <a href="#inicio" class="block hover:text-blue-600">Inicio</a>
+        <a href="#acerca" class="block hover:text-blue-600">Acerca de mí</a>
+        <a href="#repositorios" class="block hover:text-blue-600">Repositorios</a>
+        <a href="#contacto" class="block hover:text-blue-600">Contacto</a>
+      </div>
+    </div>
+  </nav>
+  <script>
+    // Toggle menú móvil
+    document.getElementById('menuButton').addEventListener('click', function() {
+      document.getElementById('mobileMenu').classList.toggle('hidden');
+    });
+  </script>
+
+  <!-- Header -->
+  <header id="inicio" class="relative h-64 md:h-96">
+    <picture>
+      <source srcset="build/img/headers/Programming_4K.avif" type="image/avif">
+      <source srcset="build/img/headers/Programming_4K.webp" type="image/webp">
+      <img src="build/img/headers/Programming_4K.jpg" alt="Fondo de programación" class="w-full h-full object-cover">
+    </picture>
+    <!-- Overlay -->
+    <div class="absolute inset-0 bg-black opacity-50"></div>
+    <!-- Texto del header -->
+    <div class="absolute inset-0 flex flex-col justify-center items-center text-center">
+      <h1 class="text-white text-3xl md:text-5xl font-bold">Everardo Torres</h1>
+      <h4 id="typed" class="text-white text-xl md:text-2xl font-medium mt-2"></h4>
+    </div>
+  </header>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      new Typed("#typed", {
+        strings: ["Desarrollador Full Stack", "Ingeniero en Sistemas", "Apasionado por la Innovación"],
+        typeSpeed: 60,
+        backSpeed: 50,
+        loop: true
+      });
+    });
+  </script>
+
+  <!-- Acerca de mí -->
+  <section id="acerca" class="max-w-5xl mx-auto p-6">
+    <div class="grid md:grid-cols-2 gap-6 items-center">
+      <div class="flex justify-center">
+        <!-- Puedes cambiar la ruta a tu foto de perfil -->
+        <img src="build/img/profile.jpg" alt="Foto de perfil" class="w-64 h-64 rounded-full object-cover">
+      </div>
+      <div>
+        <h2 class="text-3xl font-bold mb-4">Acerca de mí</h2>
+        <p class="mb-4">
+          Soy Everardo Torres, un apasionado desarrollador con experiencia en tecnologías web, aplicaciones móviles y proyectos de innovación. 
+          Me especializo en crear soluciones eficientes y escalables, siempre en búsqueda de nuevos desafíos que me permitan crecer profesionalmente.
+        </p>
+        <p class="mb-4">
+          Con una sólida formación en ingeniería y un enfoque práctico en el desarrollo de software, he participado en proyectos que abarcan desde sistemas complejos hasta aplicaciones de alto rendimiento. 
+          Mi meta es aportar valor a cada equipo y proyecto, combinando creatividad, análisis y tecnología.
+        </p>
+        <h3 class="text-2xl font-semibold mb-2">Habilidades Técnicas</h3>
+        <ul class="list-disc list-inside">
+          <li>JavaScript, TypeScript, Node.js</li>
+          <li>React, Angular, Vue.js</li>
+          <li>Python, Django, Flask</li>
+          <li>C++, C, Java</li>
+          <li>Desarrollo móvil con Flutter y Kotlin</li>
+          <li>SQL y NoSQL</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Repositorios Destacados -->
+  <section id="repositorios" class="max-w-7xl mx-auto p-6">
+    <h2 class="text-3xl font-bold mb-6 text-center">Repositorios Destacados</h2>
+    <div id="reposContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Las tarjetas se cargarán dinámicamente -->
+    </div>
+  </section>
+  <script>
+    const reposContainer = document.getElementById('reposContainer');
+  
+    // Función para formatear la fecha en español
+    function formatDate(dateStr) {
+      const date = new Date(dateStr);
+      return date.toLocaleDateString('es-ES');
+    }
+  
+    // Opcional: Token de acceso personal de GitHub (NO LO EXPONGAS EN CLIENTE)
+    const token = ''; // Déjalo vacío si no lo usas o maneja desde un servidor
+    const GITHUB_TOKEN = "API_KEY_PLACEHOLDER"; 
+    fetch('https://api.github.com/users/eversuelo/repos', {
+      headers: GITHUB_TOKEN ? { 'Authorization': `token ${GITHUB_TOKEN}` } : {}
+    })
+      .then(response => {
+        if (!response.ok) {
+          return response.json().then(err => {
+            throw new Error(`Error ${response.status}: ${err.message}`);
+          });
+        }
+        return response.json();
+      })
+      .then(repos => {
+        if (!Array.isArray(repos)) {
+          throw new Error('La respuesta de la API no es válida.');
+        }
+        repos.sort((a, b) => b.stargazers_count - a.stargazers_count);
+        repos.forEach(repo => {
+          const card = document.createElement('div');
+          card.className = 'bg-white p-6 rounded shadow hover:shadow-lg transition';
+  
+          const title = document.createElement('a');
+          title.href = repo.html_url;
+          title.target = '_blank';
+          title.textContent = repo.name;
+          title.className = 'block text-2xl font-bold text-blue-600 hover:underline';
+          card.appendChild(title);
+  
+          const desc = document.createElement('p');
+          desc.className = 'mt-2 text-gray-600';
+          desc.innerHTML = repo.description || 'Sin descripción disponible.';
+          card.appendChild(desc);
+  
+          const info = document.createElement('div');
+          info.className = 'mt-4 flex flex-wrap gap-2 text-sm text-gray-500';
+          if (repo.language) {
+            const lang = document.createElement('span');
+            lang.textContent = `Lenguaje: ${repo.language}`;
+            info.appendChild(lang);
+          }
+          const stars = document.createElement('span');
+          stars.textContent = `★ ${repo.stargazers_count}`;
+          info.appendChild(stars);
+          const forks = document.createElement('span');
+          forks.textContent = `Forks: ${repo.forks_count}`;
+          info.appendChild(forks);
+          const updated = document.createElement('span');
+          updated.textContent = `Actualizado: ${formatDate(repo.updated_at)}`;
+          info.appendChild(updated);
+          card.appendChild(info);
+          reposContainer.appendChild(card);
+  
+          // Obtener README para mejorar la descripción
+          fetch(`https://api.github.com/repos/eversuelo/${repo.name}/readme`, {
+            headers: GITHUB_TOKEN ? { 'Authorization': `token ${GITHUB_TOKEN}` } : {}
+          })
+            .then(response => {
+              if (!response.ok) throw new Error('No se encontró README');
+              return response.json();
+            })
+            .then(data => {
+              // Decodificar Base64 y eliminar BOM
+              let decoded = decodeURIComponent(escape(atob(data.content).replace(/^\uFEFF/, '')));
+  
+              // Extraer la primera línea significativa como descripción
+              const lines = decoded.split('\n').filter(line => line.trim() !== '');
+              let brief = '';
+              if (lines.length > 0) {
+                if (lines[0].startsWith('#')) {
+                  brief = lines.length > 1 ? lines[1].trim() : repo.description || "Sin descripción disponible.";
+                } else {
+                  brief = lines[0].trim();
+                }
+                if (brief.length > 150) {
+                  brief = brief.substring(0, 150) + '...';
+                }
+              }
+              desc.innerHTML = brief;
+            })
+            .catch(() => {
+              desc.innerHTML = repo.description || "Sin descripción disponible.";
+            });
+        });
+      })
+      .catch(error => {
+        reposContainer.textContent = "Error al cargar repositorios.";
+        console.error(error);
+      });
+  </script>
+  
+
+  <!-- Contacto -->
+  <section id="contacto" class="max-w-7xl mx-auto p-6">
+    <h2 class="text-3xl font-bold mb-6 text-center">Contacto</h2>
+    <div class="flex flex-col items-center">
+      <p class="mb-4">¿Te gustaría trabajar conmigo o conectar profesionalmente? ¡Hablemos!</p>
+      <div class="flex space-x-4">
+        <a href="https://linkedin.com/in/eversuelo" target="_blank" class="text-blue-600 hover:underline">LinkedIn</a>
+        <a href="https://github.com/eversuelo" target="_blank" class="text-blue-600 hover:underline">GitHub</a>
+        <a href="mailto:tu-email@dominio.com" class="text-blue-600 hover:underline">Email</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-6">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <a href="#" class="text-2xl font-bold">Everardo Torres</a>
+        <nav class="mt-4 md:mt-0 flex space-x-4">
+          <a href="#" class="hover:underline">Facebook</a>
+          <a href="#" class="hover:underline">Twitter</a>
+          <a href="#" class="hover:underline">LinkedIn</a>
+          <a href="#" class="hover:underline">GitHub</a>
+        </nav>
+      </div>
+      <p class="text-center mt-4">&copy; 2023 Todos los derechos reservados.</p>
+    </div>
+  </footer>
+  
+</body>
+</html>

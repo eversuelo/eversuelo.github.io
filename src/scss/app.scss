@@ -1,0 +1,21 @@
+
+@use 'base';
+@use 'base/mixins' as m;
+@use 'components';
+@import 'extra';
+//@import url('../../node_modules/dropzone/dist/basic.css');
+//@import url('../../node_modules/dropzone/dist/dropzone.css');
+// Fonts
+
+// Variables
+@import 'variables';
+@import 'pages';
+// Bootstrap
+
+// add any custom colors by creating your own map and merging with the (now-defined) $theme-colors map
+// Create your own map
+
+
+//Rules Befor that i did
+
+ 
