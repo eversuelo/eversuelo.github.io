@@ -125,8 +125,6 @@
       const date = new Date(dateStr);
       return date.toLocaleDateString('es-ES');
     }
-  
-
     fetch('https://api.github.com/users/eversuelo/repos', {
       headers: GITHUB_TOKEN ? { 'Authorization': `token ${GITHUB_TOKEN}` } : {}
     })
