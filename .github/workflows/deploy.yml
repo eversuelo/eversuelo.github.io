@@ -13,9 +13,9 @@ jobs:
       - name: Checkout código
         uses: actions/checkout@v3
 
-      - name: Reemplazar el placeholder con el Token Secreto
+      - name: Reemplazar el placeholder en index.html
         run: |
-          sed -i 's/API_KEY_PLACEHOLDER/${{ secrets.TOKEN }}/g' public/config.js
+          sed -i 's/API_KEY_PLACEHOLDER/${{ secrets.TOKEN }}/g' index.html
 
       - name: Deploy a GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
