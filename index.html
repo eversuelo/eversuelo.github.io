@@ -3,303 +3,503 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Everardo Torres - Desarrollador</title>
-  <!-- Tailwind CSS desde CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Typed.js para efecto tipiado -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.0/typed.min.js" crossorigin="anonymous"></script>
+  <title>everardo@torres ~ $ ./hack</title>
+  <meta name="description" content="Terminal lab de Everardo Torres — proyectos, CV y repos. Sitio principal: everardotorres.com" />
+  <link rel="canonical" href="https://eversuelo.github.io/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0e0a;
+      --bg-soft: #0f1410;
+      --bg-card: #111811;
+      --border: #1f2a1f;
+      --green: #3df57a;
+      --green-dim: #1f7a3a;
+      --amber: #f5c542;
+      --text: #c8e6c9;
+      --muted: #6c7a6c;
+      --red: #ff5c5c;
+      --blue: #5cc8ff;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 15px;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(
+        0deg,
+        rgba(61, 245, 122, 0.03) 0px,
+        rgba(61, 245, 122, 0.03) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+      z-index: 1;
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.6) 100%);
+      z-index: 1;
+    }
+    .wrap { position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; padding: 24px 20px 80px; }
+    a { color: var(--green); text-decoration: none; }
+    a:hover { color: var(--amber); text-decoration: underline; }
+
+    /* Top bar */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px 8px 0 0;
+      padding: 10px 14px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(6px);
+    }
+    .dots { display: flex; gap: 6px; }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot.r { background: #ff5f56; }
+    .dot.y { background: #ffbd2e; }
+    .dot.g { background: #27c93f; }
+    .topbar .path { color: var(--muted); font-size: 13px; }
+    .topbar .path b { color: var(--green); font-weight: 500; }
+    .topbar nav { display: flex; gap: 14px; flex-wrap: wrap; }
+    .topbar nav a { color: var(--text); font-size: 13px; }
+    .topbar nav a:hover { color: var(--green); text-decoration: none; }
+
+    /* Hero — boot sequence */
+    .hero {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-top: none;
+      padding: 28px 22px;
+      border-radius: 0 0 8px 8px;
+      margin-bottom: 28px;
+    }
+    .ascii {
+      color: var(--green);
+      font-size: 11px;
+      line-height: 1.05;
+      white-space: pre;
+      overflow-x: auto;
+      margin: 0 0 18px;
+      text-shadow: 0 0 8px rgba(61, 245, 122, 0.35);
+    }
+    .prompt { color: var(--green-dim); }
+    .prompt b { color: var(--green); }
+    .prompt .user { color: var(--amber); }
+    .prompt .host { color: var(--blue); }
+    .typed { display: inline-block; min-height: 1.2em; }
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      height: 1.1em;
+      background: var(--green);
+      vertical-align: text-bottom;
+      animation: blink 1s steps(2) infinite;
+      margin-left: 2px;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 44px);
+      margin: 14px 0 6px;
+      color: #eafff0;
+      letter-spacing: 1px;
+    }
+    .hero .tag { color: var(--muted); margin: 0 0 22px; font-size: 14px; }
+
+    .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--bg-card);
+      color: var(--text);
+      font-family: inherit;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .btn:hover { border-color: var(--green); color: var(--green); text-decoration: none; transform: translateY(-1px); }
+    .btn.primary {
+      background: var(--green);
+      color: #0a0e0a;
+      border-color: var(--green);
+      font-weight: 700;
+      box-shadow: 0 0 18px rgba(61, 245, 122, 0.25);
+    }
+    .btn.primary:hover { background: #5cff95; color: #0a0e0a; border-color: #5cff95; }
+    .btn.amber { border-color: var(--amber); color: var(--amber); }
+    .btn.amber:hover { background: var(--amber); color: #0a0e0a; }
+
+    /* Main-site banner */
+    .main-site {
+      background: linear-gradient(135deg, rgba(61, 245, 122, 0.08), rgba(245, 197, 66, 0.04));
+      border: 1px dashed var(--green);
+      border-radius: 8px;
+      padding: 16px 18px;
+      margin: 22px 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 18px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .main-site .label { font-size: 12px; color: var(--amber); letter-spacing: 1px; }
+    .main-site .url { font-size: 16px; color: var(--green); font-weight: 500; }
+    .main-site .desc { color: var(--muted); font-size: 13px; margin-top: 2px; }
+
+    /* Section blocks */
+    section.block {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 22px;
+      margin-bottom: 24px;
+    }
+    section.block h2 {
+      font-size: 18px;
+      margin: 0 0 16px;
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    section.block h2::before { content: '>'; color: var(--amber); }
+
+    .grid { display: grid; gap: 16px; }
+    .grid.two { grid-template-columns: 1fr; }
+    @media (min-width: 720px) { .grid.two { grid-template-columns: 1fr 1fr; } }
+
+    .kv { margin: 0; }
+    .kv dt { color: var(--amber); font-size: 12px; letter-spacing: 1px; margin-top: 8px; }
+    .kv dt:first-child { margin-top: 0; }
+    .kv dd { margin: 2px 0 0; color: var(--text); font-size: 14px; word-break: break-word; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+    .tag-chip {
+      font-size: 12px;
+      padding: 3px 8px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text);
+      background: var(--bg-soft);
+    }
+    .tag-chip.hot { color: var(--green); border-color: var(--green-dim); }
+
+    /* Repos */
+    #reposContainer { display: grid; gap: 14px; grid-template-columns: 1fr; }
+    @media (min-width: 720px) { #reposContainer { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1000px) { #reposContainer { grid-template-columns: 1fr 1fr 1fr; } }
+    .repo-card {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px;
+      transition: border-color 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .repo-card:hover { border-color: var(--green); }
+    .repo-card .name { color: var(--green); font-weight: 700; font-size: 15px; word-break: break-all; }
+    .repo-card .desc { color: var(--text); font-size: 13px; flex: 1; min-height: 2.6em; }
+    .repo-card .meta { font-size: 11px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 10px; }
+    .repo-card .meta span { display: inline-flex; align-items: center; gap: 4px; }
+    .repo-card .star { color: var(--amber); }
+    .repo-loading, .repo-error { color: var(--muted); font-size: 13px; grid-column: 1 / -1; }
+    .repo-error { color: var(--red); }
+
+    /* Contact list */
+    .contact-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+    .contact-list li { display: flex; gap: 10px; align-items: baseline; font-size: 14px; }
+    .contact-list .key { color: var(--amber); min-width: 90px; }
+
+    footer.foot {
+      margin-top: 32px;
+      padding: 16px 0;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+    footer.foot a { color: var(--muted); }
+    footer.foot a:hover { color: var(--green); }
+
+    /* Subtle scroll bar */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--green-dim); }
+  </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
-  <!-- Navbar -->
-  <nav class="bg-white shadow fixed w-full z-20">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="flex justify-between items-center py-4">
-        <a href="#" class="text-xl font-bold">Everardo Torres</a>
-        <div class="hidden md:flex space-x-6">
-          <a href="#inicio" class="hover:text-blue-600">Inicio</a>
-          <a href="#acerca" class="hover:text-blue-600">Acerca de mí</a>
-          <a href="#cv" class="hover:text-blue-600">CV</a>
-          <a href="#repositorios" class="hover:text-blue-600">Repositorios</a>
-          <a href="#contacto" class="hover:text-blue-600">Contacto</a>
-        </div>
-        <!-- Botón menú móvil -->
-        <div class="md:hidden">
-          <button id="menuButton" class="text-gray-800 focus:outline-none">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-            </svg>
-          </button>
-        </div>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="dots" aria-hidden="true">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
       </div>
+      <div class="path"><b>everardo@torres</b>:<span style="color:var(--blue)">~/lab</span>$</div>
+      <nav>
+        <a href="#about">about</a>
+        <a href="#cv">cv</a>
+        <a href="#repos">repos</a>
+        <a href="#contact">contact</a>
+        <a href="https://everardotorres.com" target="_blank" rel="noopener" style="color:var(--amber)">main_site ↗</a>
+      </nav>
     </div>
-    <!-- Menú móvil -->
-    <div id="mobileMenu" class="hidden md:hidden">
-      <div class="px-4 pt-2 pb-4 space-y-1">
-        <a href="#inicio" class="block hover:text-blue-600">Inicio</a>
-        <a href="#acerca" class="block hover:text-blue-600">Acerca de mí</a>
-        <a href="#cv" class="block hover:text-blue-600">CV</a>
-        <a href="#repositorios" class="block hover:text-blue-600">Repositorios</a>
-        <a href="#contacto" class="block hover:text-blue-600">Contacto</a>
-      </div>
-    </div>
-  </nav>
-  <script>
-    // Toggle menú móvil
-    document.getElementById('menuButton').addEventListener('click', function () {
-      document.getElementById('mobileMenu').classList.toggle('hidden');
-    });
-  </script>
 
-  <!-- Header -->
-  <header id="inicio" class="relative h-64 md:h-96">
-    <picture>
-      <source srcset="build/img/headers/Programming_4K.avif" type="image/avif">
-      <source srcset="build/img/headers/Programming_4K.webp" type="image/webp">
-      <img src="build/img/headers/Programming_4K.jpg" alt="Fondo de programación" class="w-full h-full object-cover">
-    </picture>
-    <!-- Overlay -->
-    <div class="absolute inset-0 bg-black opacity-50"></div>
-    <!-- Texto del header -->
-    <div class="absolute inset-0 flex flex-col justify-center items-center text-center">
-      <h1 class="text-white text-3xl md:text-5xl font-bold">Everardo Torres</h1>
-      <h4 id="typed" class="text-white text-xl md:text-2xl font-medium mt-2"></h4>
-    </div>
-  </header>
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      new Typed("#typed", {
-        strings: ["Desarrollador Full Stack", "Ingeniero en Computación", "Apasionado por la Innovación"],
-        typeSpeed: 60,
-        backSpeed: 50,
-        loop: true
-      });
-    });
-  </script>
+    <header class="hero">
+      <pre class="ascii" aria-hidden="true"> _____                          _         _____
+| ____|_   _____ _ __ __ _ _ __| | ___   |_   _|__  _ __ _ __ ___  ___
+|  _| \ \ / / _ \ '__/ _` | '__| |/ _ \    | |/ _ \| '__| '__/ _ \/ __|
+| |___ \ V /  __/ | | (_| | |  | | (_) |   | | (_) | |  | | |  __/\__ \
+|_____| \_/ \___|_|  \__,_|_|  |_|\___/    |_|\___/|_|  |_|  \___||___/</pre>
+      <div class="prompt">
+        <span class="user">everardo</span>@<span class="host">torres</span>:~$ <span id="typed" class="typed"></span><span class="cursor"></span>
+      </div>
+      <h1>$ ./hack --target portfolio</h1>
+      <p class="tag"># Lab page. Repos, CV y experimentos. El sitio principal está abajo ↓</p>
 
-  <!-- Acerca de mí -->
-  <section id="acerca" class="max-w-5xl mx-auto p-6">
-    <div class="grid md:grid-cols-2 gap-6 items-center">
-      <div class="flex justify-center">
-        <img src="https://media.licdn.com/dms/image/v2/D4E03AQEWXutQUxCPEw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1731016127027?e=1747267200&v=beta&t=5GzPUi6x1hyB_xkwy_eASRCsSyvKg2odjY-AFLDvfNY" alt="Foto de perfil"
-          class="w-64 h-64 rounded-full object-cover">
-      </div>
-      <div>
-        <h2 class="text-3xl font-bold mb-4">Acerca de mí</h2>
-        <p class="mb-4">
-          Soy Everardo Torres, un apasionado desarrollador con experiencia en tecnologías web,con hobby por desarrollar aplicaciones móviles y proyectos de innovación. Me motiva aprender constantemente, enfrentar desafíos y crecer profesionalmente a través de la mentoría y el aprendizaje práctico.
-        </p>
-        <p class="mb-4">
-          Con una sólida formación en ingeniería y experiencia en diversos lenguajes y frameworks, mi meta es aportar valor y creatividad en cada proyecto.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Sección CV -->
- <!-- Sección CV con diseño de dos columnas -->
-<section id="cv" class="max-w-7xl mx-auto p-6 bg-white shadow my-6 rounded">
-  <h2 class="text-3xl font-bold mb-6 text-center">Curriculum Vitae</h2>
-  <div class="grid md:grid-cols-2 gap-6">
-    <!-- Columna Izquierda: Datos personales y habilidades -->
-    <div class="space-y-6">
-      <!-- Datos Personales -->
-      <div class="p-4 bg-gray-50 rounded">
-        <h3 class="text-2xl font-semibold mb-4">Datos Personales</h3>
-        <p class="mb-2"><strong>Nombre:</strong> José Everardo Torres Orozco</p>
-        <p class="mb-2"><strong>Ubicación:</strong> Guadalajara, Jalisco, México y Morelia, Michoacán, México</p>
-        <p class="mb-2"><strong>Teléfono:</strong> +52 44 34 20 24 70</p>
-        <p class="mb-2"><strong>Email:</strong> everardo.03.04.99@gmail.com</p>
-        <p class="mb-2"><strong>Community & Blog Web:</strong> <a href="http://www.devever.com.mx" target="_blank" class="text-blue-600 hover:underline">www.devever.com.mx</a> -  Comunidad de desarrolladores conocidos y networking.</p>
-      </div>
-      <!-- Habilidades Técnicas -->
-      <div class="p-4 bg-gray-50 rounded">
-        <h3 class="text-2xl font-semibold mb-4">Habilidades Técnicas</h3>
-        <ul class="list-disc list-inside text-sm space-y-1">
-          <li>PHP (Laravel, Wordpress)</li>
-          <li>JavaScript (NodeJS, VueJS, ReactJS, TypeScript, React Native, NextJS, ExpressJS)</li>
-          <li>Java (Java Swing, OOP)</li>
-          <li>C/C++, Python</li>
-          <li>SQL (Básico), HTML, CSS3</li>
-          <li>Herramientas: Terraform, Vagrant, N8N</li>
-          <li>Sistemas Operativos: Windows, Linux (Ubuntu), Microsoft Office</li>
-          <li>Cloud: Conocimientos en Azure</li>
-          <li>Otros: Gráficos por Computadora, Ray Tracing, Redes (CISCO CCNA - Básico), NoSQL, Algoritmos y Estructuras de Datos</li>
-        </ul>
-      </div>
-      <!-- Habilidades Blandas -->
-      <div class="p-4 bg-gray-50 rounded">
-        <h3 class="text-2xl font-semibold mb-4">Habilidades Blandas</h3>
-        <ul class="list-disc list-inside text-sm space-y-1">
-          <li>Honestidad y Empatía</li>
-          <li>Autodidacta y Creatividad</li>
-          <li>Adaptabilidad y Colaboración</li>
-          <li>Proactividad y Pensamiento Crítico</li>
-        </ul>
-      </div>
-    </div>
-    <!-- Columna Derecha: Experiencia y Educación -->
-    <div class="space-y-6">
-      <!-- Experiencia Laboral -->
-      <div class="p-4 bg-gray-50 rounded">
-        <h3 class="text-2xl font-semibold mb-4">Experiencia Laboral</h3>
-        <div class="mb-4 border-b pb-2">
-          <h4 class="text-xl font-bold">FlexBPO - Web Developer</h4>
-          <p class="text-gray-600 text-sm">Abril 2024 - Actual</p>
-          <p class="mt-2">Desarrollo de nuevas funciones para software aduanal utilizando React, MongoDB y NodeJS.</p>
+      <div class="main-site">
+        <div>
+          <div class="label">// MAIN SITE</div>
+          <div class="url">https://everardotorres.com</div>
+          <div class="desc">Blog, proyectos a profundidad y contenido completo (Next.js + Payload CMS)</div>
         </div>
-        <div class="mb-4 border-b pb-2">
-          <h4 class="text-xl font-bold">Intern at <a href="https://www.bestreference.com.mx/"
-              class="text-blue-600 hover:underline" target="_blank"
-            >Best Reference</a> - Web Developer</h4>
-          <p class="text-gray-600 text-sm">Abril 2023 - Febrero 2024</p>
-          <p class="mt-2">Desarrollo de software de ventas usando PHP, VueJS y MySQL.</p>
+        <a class="btn primary" href="https://everardotorres.com" target="_blank" rel="noopener">→ ir al sitio principal</a>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn amber" href="build/everardo_torres_cv_en.pdf" target="_blank" rel="noopener">📄 CV (EN)</a>
+        <a class="btn amber" href="build/everardo_torres_cv_es.pdf" target="_blank" rel="noopener">📄 CV (ES)</a>
+        <a class="btn" href="https://github.com/eversuelo" target="_blank" rel="noopener">github.com/eversuelo</a>
+        <a class="btn" href="https://linkedin.com/in/jose-everardo-torres-orozco-822a2b180" target="_blank" rel="noopener">linkedin</a>
+      </div>
+    </header>
+
+    <section id="about" class="block">
+      <h2>cat about.md</h2>
+      <p style="margin:0 0 10px">
+        Desarrollador full-stack con experiencia en aplicaciones web modernas. Trabajo principalmente con
+        <span style="color:var(--green)">TypeScript / React / Node</span> y un hobby por el desarrollo móvil.
+      </p>
+      <p style="margin:0; color:var(--muted)">
+        Curiosidad por la innovación, automatización y herramientas de desarrollador.
+      </p>
+    </section>
+
+    <section id="cv" class="block">
+      <h2>less cv.txt</h2>
+      <div class="grid two">
+        <div>
+          <dl class="kv">
+            <dt>NAME</dt>
+            <dd>José Everardo Torres Orozco</dd>
+            <dt>LOCATION</dt>
+            <dd>Guadalajara, JAL · Morelia, MICH — México</dd>
+            <dt>EMAIL</dt>
+            <dd><a href="mailto:everardo.03.04.99@gmail.com">everardo.03.04.99@gmail.com</a></dd>
+            <dt>PHONE</dt>
+            <dd>+52 44 34 20 24 70</dd>
+            <dt>WEB</dt>
+            <dd><a href="https://everardotorres.com" target="_blank" rel="noopener">everardotorres.com</a></dd>
+          </dl>
         </div>
         <div>
-          <h4 class="text-xl font-bold">Freelance</h4>
-          <p class="mt-2">
-            Desarrollo web independiente para proyectos como 
-            <a href="https://www.sonidoemotions.com" target="_blank" class="text-blue-600 hover:underline">Sonido Emotions</a>, 
-          </p>
+          <dl class="kv">
+            <dt>STACK</dt>
+            <dd>
+              <div class="tags">
+                <span class="tag-chip hot">TypeScript</span>
+                <span class="tag-chip hot">React</span>
+                <span class="tag-chip hot">Next.js</span>
+                <span class="tag-chip">Node.js</span>
+                <span class="tag-chip">PHP / Laravel</span>
+                <span class="tag-chip">React Native</span>
+                <span class="tag-chip">MongoDB</span>
+                <span class="tag-chip">SQL</span>
+                <span class="tag-chip">Tailwind</span>
+                <span class="tag-chip">Payload CMS</span>
+                <span class="tag-chip">Java</span>
+                <span class="tag-chip">C/C++</span>
+                <span class="tag-chip">Python</span>
+              </div>
+            </dd>
+            <dt>NOW</dt>
+            <dd>FlexBPO — Web Developer (Abr 2024 → actual)</dd>
+            <dt>PREV</dt>
+            <dd>Best Reference — Web Developer (Abr 2023 → Feb 2024)</dd>
+            <dt>EDU</dt>
+            <dd>Ing. en Computación · Universidad Michoacana de San Nicolás de Hidalgo</dd>
+          </dl>
         </div>
       </div>
-      <!-- Educación -->
-      <div class="p-4 bg-gray-50 rounded">
-        <h3 class="text-2xl font-semibold mb-4">Educación</h3>
-        <div class="mb-4 border-b pb-2">
-          <h4 class="text-xl font-bold">Universidad Michoacana de San Nicolás de Hidalgo</h4>
-          <p class="text-gray-600 text-sm">2017 - Actual</p>
-          <p class="mt-2">Facultad de Ingeniería Eléctrica - Ingeniería en Computación (10º Semestre, en curso)</p>
-        </div>
-        <div class="mb-4 border-b pb-2">
-          <h4 class="text-xl font-bold">Colegio Primitivo y Nacional de San Nicolás de Hidalgo</h4>
-          <p class="text-gray-600 text-sm">2014 - 2017</p>
-          <p class="mt-2">Educación Media Superior</p>
-        </div>
-        <div>
-          <h4 class="text-xl font-bold">Departamento de Idiomas</h4>
-          <p class="text-gray-600 text-sm">2017 - 2020</p>
-          <p class="mt-2">Inglés - Nivel B2</p>
-        </div>
+      <div class="cta-row" style="margin-top:18px">
+        <a class="btn amber" href="build/everardo_torres_cv_en.pdf" target="_blank" rel="noopener">↓ descargar CV (EN)</a>
+        <a class="btn amber" href="build/everardo_torres_cv_es.pdf" target="_blank" rel="noopener">↓ descargar CV (ES)</a>
       </div>
-    </div>
+    </section>
+
+    <section id="repos" class="block">
+      <h2>ls -la ~/repos</h2>
+      <div id="reposContainer">
+        <div class="repo-loading">// fetching repos…</div>
+      </div>
+    </section>
+
+    <section id="contact" class="block">
+      <h2>./contact.sh</h2>
+      <ul class="contact-list">
+        <li><span class="key">[main]</span> <a href="https://everardotorres.com" target="_blank" rel="noopener">everardotorres.com</a></li>
+        <li><span class="key">[email]</span> <a href="mailto:everardo.03.04.99@gmail.com">everardo.03.04.99@gmail.com</a></li>
+        <li><span class="key">[github]</span> <a href="https://github.com/eversuelo" target="_blank" rel="noopener">github.com/eversuelo</a></li>
+        <li><span class="key">[linkedin]</span> <a href="https://linkedin.com/in/jose-everardo-torres-orozco-822a2b180" target="_blank" rel="noopener">/in/jose-everardo-torres-orozco</a></li>
+        <li><span class="key">[phone]</span> +52 44 34 20 24 70</li>
+      </ul>
+    </section>
+
+    <footer class="foot">
+      <span id="footer-line">
+        <a href="https://everardotorres.com" target="_blank" rel="noopener">everardotorres.com</a>
+        · github mirror · &copy; <span id="year"></span> Everardo Torres
+      </span>
+    </footer>
   </div>
-</section>
 
-  <!-- Repositorios Destacados -->
-  <section id="repositorios" class="max-w-7xl mx-auto p-6">
-    <h2 class="text-3xl font-bold mb-6 text-center">Repositorios Destacados</h2>
-    <div id="reposContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Las tarjetas se cargarán dinámicamente -->
-    </div>
-    <script>
-     fetch('https://devever.com.mx/api/repositories/eversuelo', { mode: 'cors' })
-  .then(response => {
-    if (!response.ok) {
-      return response.json().then(err => { throw new Error(`Error ${response.status}: ${err.message}`); });
-    }
-    return response.json();
-  })
-  .then(repos => {
-    if (!Array.isArray(repos)) throw new Error('La respuesta de la API no es válida.');
-    
-    // Ordenar y renderizar repositorios
-    repos.sort((a, b) => {
-      if (b.stargazers_count !== a.stargazers_count) return b.stargazers_count - a.stargazers_count;
-      if (b.forks_count !== a.forks_count) return b.forks_count - a.forks_count;
-      return new Date(b.updated_at) - new Date(a.updated_at);
-    });
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    repos.forEach(repo => {
-      const card = document.createElement('div');
-      // Asignar el id para identificar la tarjeta
-      card.id = repo.name;
-      card.className = 'bg-white p-6 rounded shadow hover:shadow-lg transition';
-
-      const title = document.createElement('a');
-      title.href = repo.html_url;
-      title.target = '_blank';
-      title.textContent = repo.name;
-      title.className = 'block text-2xl font-bold text-blue-600 hover:underline';
-      card.appendChild(title);
-
-      const desc = document.createElement('p');
-      desc.className = 'mt-2 text-gray-600';
-      desc.innerHTML = repo.description || 'Sin descripción disponible.';
-      card.appendChild(desc);
-
-      const info = document.createElement('div');
-      info.className = 'mt-4 flex flex-wrap gap-2 text-sm text-gray-500';
-      if (repo.language) {
-        const lang = document.createElement('span');
-        lang.textContent = `Lenguaje: ${repo.language}`;
-        info.appendChild(lang);
+    // Typed-style boot lines
+    (function () {
+      const lines = [
+        'whoami → full-stack developer',
+        'cat /etc/role → Web Developer @ FlexBPO',
+        'ping everardotorres.com … 200 OK',
+        'open https://everardotorres.com   # ← main site',
+      ];
+      const el = document.getElementById('typed');
+      if (!el) return;
+      let i = 0, j = 0, deleting = false;
+      function tick() {
+        const line = lines[i];
+        if (!deleting) {
+          el.textContent = line.slice(0, j++);
+          if (j > line.length) {
+            deleting = true;
+            return setTimeout(tick, 1400);
+          }
+        } else {
+          el.textContent = line.slice(0, j--);
+          if (j < 0) {
+            deleting = false;
+            i = (i + 1) % lines.length;
+            j = 0;
+          }
+        }
+        setTimeout(tick, deleting ? 25 : 55);
       }
-      const stars = document.createElement('span');
-      stars.textContent = `★ ${repo.stargazers_count}`;
-      info.appendChild(stars);
-      const forks = document.createElement('span');
-      forks.textContent = `Forks: ${repo.forks_count}`;
-      info.appendChild(forks);
-      const updated = document.createElement('span');
-      // El id se construye concatenando el nombre del repo y "-updated"
-      updated.id = repo.name + '-updated';
-      // Formateamos la fecha de actualización
-      const updateDate = new Date(repo.updated_at).toLocaleDateString('es-ES');
-      updated.textContent = `Actualizado: ${updateDate}`;
-      info.appendChild(updated);
+      tick();
+    })();
 
-      card.appendChild(info);
-      document.getElementById('reposContainer').appendChild(card);
-    });
-
-    // Una vez renderizados todos los repositorios, buscamos el elemento de fecha del repo "eversuelo.github.io"
-    const lastUpdateElement = document.getElementById('eversuelo.github.io-updated');
-    const footerParagraph = document.querySelector('footer p');
-    const currentYear = new Date().getFullYear();
-    if (footerParagraph) {
-      if (lastUpdateElement) {
-        footerParagraph.innerHTML = `&copy; ${currentYear} Todos los derechos reservados. ${lastUpdateElement.textContent}`;
-      } else {
-        footerParagraph.innerHTML = `&copy; ${currentYear} Todos los derechos reservados.`;
+    // Repos
+    const container = document.getElementById('reposContainer');
+    function renderRepos(repos) {
+      container.innerHTML = '';
+      repos.sort((a, b) => {
+        if (b.stargazers_count !== a.stargazers_count) return b.stargazers_count - a.stargazers_count;
+        if (b.forks_count !== a.forks_count) return b.forks_count - a.forks_count;
+        return new Date(b.updated_at) - new Date(a.updated_at);
+      });
+      let lastUpdate = null;
+      repos.forEach(repo => {
+        if (repo.name === 'eversuelo.github.io') {
+          lastUpdate = new Date(repo.updated_at).toLocaleDateString('es-ES');
+        }
+        const card = document.createElement('a');
+        card.href = repo.html_url;
+        card.target = '_blank';
+        card.rel = 'noopener';
+        card.className = 'repo-card';
+        const name = document.createElement('div');
+        name.className = 'name';
+        name.textContent = '~/' + repo.name;
+        const desc = document.createElement('div');
+        desc.className = 'desc';
+        desc.textContent = repo.description || '# no description';
+        const meta = document.createElement('div');
+        meta.className = 'meta';
+        if (repo.language) {
+          const lang = document.createElement('span');
+          lang.textContent = repo.language;
+          meta.appendChild(lang);
+        }
+        const stars = document.createElement('span');
+        stars.className = 'star';
+        stars.textContent = '★ ' + repo.stargazers_count;
+        meta.appendChild(stars);
+        const forks = document.createElement('span');
+        forks.textContent = '⑂ ' + repo.forks_count;
+        meta.appendChild(forks);
+        const upd = document.createElement('span');
+        upd.textContent = new Date(repo.updated_at).toLocaleDateString('es-ES');
+        meta.appendChild(upd);
+        card.appendChild(name);
+        card.appendChild(desc);
+        card.appendChild(meta);
+        container.appendChild(card);
+      });
+      if (lastUpdate) {
+        const f = document.getElementById('footer-line');
+        f.innerHTML = '<a href="https://everardotorres.com" target="_blank" rel="noopener">everardotorres.com</a> · last sync ' + lastUpdate + ' · &copy; ' + new Date().getFullYear() + ' Everardo Torres';
       }
     }
-  })
-  .catch(error => {
-    document.getElementById('reposContainer').textContent = "Error al cargar repositorios.";
-    console.error(error);
-  });
 
-    </script>
-  </section>
-
-  <!-- Contacto -->
-  <section id="contacto" class="max-w-7xl mx-auto p-6">
-    <h2 class="text-3xl font-bold mb-6 text-center">Contacto</h2>
-    <div class="flex flex-col items-center">
-      <p class="mb-4">¿Te gustaría trabajar conmigo o conectar profesionalmente? ¡Hablemos!</p>
-      <div class="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4">
-        <a href="https://linkedin.com/in/jose-everardo-torres-orozco-822a2b180" target="_blank" class="text-blue-600 hover:underline">LinkedIn</a>
-        <a href="https://github.com/eversuelo" target="_blank" class="text-blue-600 hover:underline">GitHub</a>
-        <a href="mailto:everardo.03.04.99@gmail.com" class="text-blue-600 hover:underline">Email</a>
-        <span class="text-gray-700">Tel: +52 44 34 20 24 70</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-gray-800 text-white py-6">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="flex flex-col md:flex-row justify-between items-center">
-        <a href="#" class="text-2xl font-bold">Everardo Torres</a>
-        <nav class="mt-4 md:mt-0 flex space-x-4">
-          <a href="#" class="hover:underline">Facebook</a>
-          <a href="#" class="hover:underline">Twitter</a>
-          <a href="#" class="hover:underline">LinkedIn</a>
-          <a href="#" class="hover:underline">GitHub</a>
-        </nav>
-      </div>
-      <p class="text-center mt-4">&copy; 2023 Todos los derechos reservados.</p>
-    </div>
-  </footer>
+    fetch('https://devever.com.mx/api/repositories/eversuelo', { mode: 'cors' })
+      .then(r => {
+        if (!r.ok) return r.json().then(err => { throw new Error('Error ' + r.status + ': ' + (err.message || '')); });
+        return r.json();
+      })
+      .then(repos => {
+        if (!Array.isArray(repos)) throw new Error('Respuesta inválida');
+        renderRepos(repos);
+      })
+      .catch(err => {
+        // Fallback: use GitHub public API directly
+        fetch('https://api.github.com/users/eversuelo/repos?per_page=100&sort=updated')
+          .then(r => r.json())
+          .then(repos => {
+            if (!Array.isArray(repos)) throw new Error('GitHub API también falló');
+            renderRepos(repos);
+          })
+          .catch(e => {
+            container.innerHTML = '<div class="repo-error">// error al cargar repos: ' + (err.message || 'unknown') + '</div>';
+            console.error(err, e);
+          });
+      });
+  </script>
 </body>
 </html>
