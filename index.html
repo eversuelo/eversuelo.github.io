@@ -210,6 +210,68 @@
     }
     .tag-chip.hot { color: var(--green); border-color: var(--green-dim); }
 
+    /* Experience timeline */
+    .xp-list { display: flex; flex-direction: column; gap: 16px; }
+    .xp-entry {
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--green-dim);
+      border-radius: 6px;
+      padding: 14px 16px;
+      transition: border-left-color 0.15s ease;
+    }
+    .xp-entry:hover { border-left-color: var(--green); }
+    .xp-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .xp-role { color: var(--green); font-weight: 700; font-size: 15px; }
+    .xp-org { color: var(--text); font-size: 14px; margin-top: 2px; }
+    .xp-ctx { color: var(--muted); font-weight: 400; }
+    .xp-date {
+      color: var(--amber);
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+      padding-top: 2px;
+    }
+    .xp-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 8px 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .xp-bullets li {
+      position: relative;
+      padding-left: 18px;
+      font-size: 13.5px;
+      line-height: 1.55;
+      color: var(--text);
+    }
+    .xp-bullets li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--green-dim);
+    }
+    .xp-bullets code {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-size: 12px;
+      color: var(--amber);
+    }
+    .xp-bullets a { color: var(--green); }
+    .xp-bullets b { color: #eafff0; font-weight: 600; }
+
     /* Repos */
     #reposContainer { display: grid; gap: 14px; grid-template-columns: 1fr; }
     @media (min-width: 720px) { #reposContainer { grid-template-columns: 1fr 1fr; } }
@@ -266,6 +328,7 @@
       <nav>
         <a href="#about">about</a>
         <a href="#cv">cv</a>
+        <a href="#experience">experience</a>
         <a href="#repos">repos</a>
         <a href="#contact">contact</a>
         <a href="https://everardotorres.com" target="_blank" rel="noopener" style="color:var(--amber)">main_site ↗</a>
@@ -304,11 +367,16 @@
     <section id="about" class="block">
       <h2>cat about.md</h2>
       <p style="margin:0 0 10px">
-        Desarrollador full-stack con experiencia en aplicaciones web modernas. Trabajo principalmente con
-        <span style="color:var(--green)">TypeScript / React / Node</span> y un hobby por el desarrollo móvil.
+        Ingeniero de software con <span style="color:var(--green)">3+ años</span> construyendo plataformas
+        <span style="color:var(--green)">SaaS B2B</span> y aplicaciones de negocio internas. Trabajo con
+        <span style="color:var(--green)">Node.js / TypeScript</span> y <span style="color:var(--green)">Vue / React</span>
+        del lado de aplicación; <span style="color:var(--green)">MongoDB, PostgreSQL, Redis</span> y brokers
+        (<span style="color:var(--green)">IBM MQ, RabbitMQ, MQTT</span>) del lado de integración.
       </p>
       <p style="margin:0; color:var(--muted)">
-        Curiosidad por la innovación, automatización y herramientas de desarrollador.
+        He puesto en producción pipelines que mueven CSV / XLSX / EDI entre servicios, resuelto fallas de flujo
+        de mensajes punta-a-punta, y apoyado a equipos pequeños de seniors y juniors. Actualmente aprendiendo
+        fundamentos de C# / .NET.
       </p>
     </section>
 
@@ -320,41 +388,65 @@
             <dt>NAME</dt>
             <dd>José Everardo Torres Orozco</dd>
             <dt>LOCATION</dt>
-            <dd>Guadalajara, JAL · Morelia, MICH — México</dd>
+            <dd>Zapopan, Jalisco — México</dd>
             <dt>EMAIL</dt>
             <dd><a href="mailto:everardo.03.04.99@gmail.com">everardo.03.04.99@gmail.com</a></dd>
             <dt>PHONE</dt>
             <dd>+52 33 1573 5108</dd>
             <dt>WEB</dt>
             <dd><a href="https://everardotorres.com" target="_blank" rel="noopener">everardotorres.com</a></dd>
+            <dt>LANGUAGES</dt>
+            <dd>Español (nativo) · Inglés B2</dd>
           </dl>
         </div>
         <div>
           <dl class="kv">
-            <dt>STACK</dt>
+            <dt>LANGS & FRAMEWORKS</dt>
             <dd>
               <div class="tags">
                 <span class="tag-chip hot">TypeScript</span>
-                <span class="tag-chip hot">React</span>
-                <span class="tag-chip hot">Next.js</span>
-                <span class="tag-chip">Node.js</span>
-                <span class="tag-chip">PHP / Laravel</span>
-                <span class="tag-chip">React Native</span>
-                <span class="tag-chip">MongoDB</span>
-                <span class="tag-chip">SQL</span>
+                <span class="tag-chip hot">Node.js</span>
+                <span class="tag-chip hot">FeathersJS</span>
+                <span class="tag-chip">Express</span>
+                <span class="tag-chip">NestJS</span>
+                <span class="tag-chip">Vue.js</span>
+                <span class="tag-chip">React / Next.js</span>
+                <span class="tag-chip">Laravel · PHP</span>
                 <span class="tag-chip">Tailwind</span>
-                <span class="tag-chip">Payload CMS</span>
-                <span class="tag-chip">Java</span>
-                <span class="tag-chip">C/C++</span>
                 <span class="tag-chip">Python</span>
+                <span class="tag-chip">Bash</span>
+                <span class="tag-chip">C/C++</span>
+                <span class="tag-chip">C# / .NET (learning)</span>
               </div>
             </dd>
-            <dt>NOW</dt>
-            <dd>FlexBPO — Web Developer (Abr 2024 → actual)</dd>
-            <dt>PREV</dt>
-            <dd>Best Reference — Web Developer (Abr 2023 → Feb 2024)</dd>
-            <dt>EDU</dt>
-            <dd>Ing. en Computación · Universidad Michoacana de San Nicolás de Hidalgo</dd>
+            <dt>DATA & MESSAGING</dt>
+            <dd>
+              <div class="tags">
+                <span class="tag-chip hot">MongoDB</span>
+                <span class="tag-chip">PostgreSQL (Neon)</span>
+                <span class="tag-chip">MySQL</span>
+                <span class="tag-chip">Redis</span>
+                <span class="tag-chip">IBM MQ</span>
+                <span class="tag-chip">RabbitMQ</span>
+                <span class="tag-chip">MQTT (EMQX)</span>
+                <span class="tag-chip">BullMQ</span>
+                <span class="tag-chip">n8n</span>
+              </div>
+            </dd>
+            <dt>DEVOPS / IOT / PRACTICES</dt>
+            <dd>
+              <div class="tags">
+                <span class="tag-chip">Docker · Swarm</span>
+                <span class="tag-chip">Traefik</span>
+                <span class="tag-chip">Dokploy</span>
+                <span class="tag-chip">GitHub Actions</span>
+                <span class="tag-chip">Linux</span>
+                <span class="tag-chip">Cloudflare R2 / S3</span>
+                <span class="tag-chip">ESP32 + MQTT</span>
+                <span class="tag-chip">Clean Arch · DDD · TDD</span>
+                <span class="tag-chip">Agile / Scrum</span>
+              </div>
+            </dd>
           </dl>
         </div>
       </div>
@@ -362,6 +454,74 @@
         <a class="btn amber" href="build/everardo_torres_cv_en.pdf" target="_blank" rel="noopener">↓ descargar CV (EN)</a>
         <a class="btn amber" href="build/everardo_torres_cv_es.pdf" target="_blank" rel="noopener">↓ descargar CV (ES)</a>
       </div>
+    </section>
+
+    <section id="experience" class="block">
+      <h2>cat experience.log</h2>
+      <div class="xp-list">
+
+        <article class="xp-entry">
+          <header class="xp-head">
+            <div>
+              <div class="xp-role">Desarrollador Full Stack</div>
+              <div class="xp-org">Customs City Platform <span class="xp-ctx">— Contratista remoto · Toronto, CA</span></div>
+            </div>
+            <div class="xp-date">Abr 2024 → Actual</div>
+          </header>
+          <ul class="xp-bullets">
+            <li>Desarrollo y mantengo una plataforma <b>SaaS multi-tenant</b> de gestión aduanal para presentaciones ante CBP (EE.UU.) sobre <b>FeathersJS</b> (Node.js + TypeScript), <b>MongoDB</b> y <b>Redis</b>; cubre entry summaries, statements, documentos y clasificaciones HTS.</li>
+            <li>Escribo <b>aggregation pipelines</b> de MongoDB que cruzan múltiples colecciones del dominio aduanal para generar reportes de conciliación y exportaciones CSV con eventos de pago CBP, números MBOL/HBOL y flags PGA/FDA.</li>
+            <li>Diagnostico fallas de flujo de mensajes con CBP entre <b>IBM MQ</b> y <b>RabbitMQ</b>: reinicios de sender channels, caídas de VPN, profundidad de colas y monitoreo de procesos con <code>pm2</code>; documenté el flujo de resolución de problemas para el equipo.</li>
+            <li>Construí un <b>File Manager</b> en el navegador que ingesta CSV/XLSX, los procesa dentro de <b>Web Workers</b>, valida los registros y envía los JSON al API; también escribí hooks reutilizables de FeathersJS para validación, autorización por rol y metadata de auditoría.</li>
+          </ul>
+        </article>
+
+        <article class="xp-entry">
+          <header class="xp-head">
+            <div>
+              <div class="xp-role">Desarrollador Full Stack</div>
+              <div class="xp-org">Best Reference <span class="xp-ctx">— Morelia, México</span></div>
+            </div>
+            <div class="xp-date">Feb 2023 → Feb 2024</div>
+          </header>
+          <ul class="xp-bullets">
+            <li>Construí funcionalidades para un sistema interno de cotizaciones y gestión de proyectos en <b>Laravel</b>, <b>Vue.js</b> y <b>MySQL</b>, usado por los equipos de ventas y operaciones.</li>
+            <li>Implementé endpoints REST (Laravel Resources, Form Requests, Eloquent) y componentes Vue para flujos de cotización, aprobación, búsqueda y filtros; contribuí con refactors, code reviews y pruebas automatizadas básicas.</li>
+          </ul>
+        </article>
+
+        <article class="xp-entry">
+          <header class="xp-head">
+            <div>
+              <div class="xp-role">Desarrollador de Software · Freelance</div>
+              <div class="xp-org">Clientes diversos <span class="xp-ctx">— México, remoto</span></div>
+            </div>
+            <div class="xp-date">2022 → Actual</div>
+          </header>
+          <ul class="xp-bullets">
+            <li>Diseño y desarrollo el MVP de un <b>SaaS multi-tenant</b> de gestión escolar (<a href="https://iecp.mx" target="_blank" rel="noopener">iecp.mx</a>): front en <b>Next.js</b>, back en <b>Node.js</b> y <b>PostgreSQL</b> con esquemas por tenant (campus, salones, grupos, alumnos, horarios y pagos).</li>
+            <li>Trabajo en una plataforma de <b>tracking IoT/GPS</b> para agricultura (<i>GoalTime</i>, en desarrollo): dispositivos <b>ESP32</b> vía <b>MQTT</b> contra un broker <b>EMQX</b>, APIs en FeathersJS, y un servicio en Node que usa el system topic <code>$events/message_delivered</code> para confirmar entrega de comandos. Corre en Docker Swarm con Dokploy, Traefik y Let's Encrypt.</li>
+            <li>Levanto despliegues con <b>Docker sobre VPS</b> (Traefik, Dokploy, GitHub Actions) y depuro problemas multi-stack: ruteo de Traefik, healthchecks y back-pressure en colas.</li>
+          </ul>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="education" class="block">
+      <h2>cat education.txt</h2>
+      <article class="xp-entry">
+        <header class="xp-head">
+          <div>
+            <div class="xp-role">Ingeniería en Computación</div>
+            <div class="xp-org">Universidad Michoacana de San Nicolás de Hidalgo <span class="xp-ctx">— Morelia, México</span></div>
+          </div>
+          <div class="xp-date">Titulación: Jun 2026</div>
+        </header>
+        <p style="margin:8px 0 0; color:var(--muted); font-size:13px">
+          Tesis (en curso): <i>"Integración de TDD, Domain-Driven Design y Clean Architecture en un Sistema de Gestión Académica con bases de datos relacionales."</i>
+        </p>
+      </article>
     </section>
 
     <section id="repos" class="block">
